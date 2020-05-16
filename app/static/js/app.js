@@ -34,8 +34,8 @@ Vue.component('app-footer', {
 const Home = Vue.component('home', {
    template: `
     <div class="jumbotron">
-        <h1>Lab 7</h1>
-        <p class="lead">In this lab we will demonstrate VueJS working with Forms and Form Validation from Flask-WTF.</p>
+        <h1>Home</h1>
+        <p class="lead">Meh.....</p>
     </div>
    `,
     data: function() {
@@ -43,33 +43,51 @@ const Home = Vue.component('home', {
     }
 });
 
-const Upload = Vue.component('upload-form', {
+const Register = Vue.component('register-form', {
    template: `
-    <div class="my_form">
-      <form id = "app" action = "api/upload" enctype = "multipart/form-data" method = "post">
-          <div class = "my_form">
-            <p>
-              <label for = "Description">Description</label>
-            </p>
-            <p>
-              <input id ="Description" v-model = "Description" type = "text">
-            </p> </br>
-            <p>
-              <input type="file" v-on:change="handleFileUpload()" key = "Photo-input">
-            </p>
-            <button v-bind:Photo="file" v-bind:Description="Description" @click="uploadPhoto"> Submit</button>
-          </div>
-        </form>  
+    <div class="registration_form">
+      <form id = "app" action = "" enctype = "multipart/form-data" method = "post">
+        v-for="(user, index) in users"
+        <class = "form-control" v-model = user.username>
+        <class = "form-control" v-model = user.password>
+        <class = "form-control" v-model = user.firstname>
+        <class = "form-control" v-model = user.lastname>
+        <class = "form-control" v-model = user.email>
+        <class = "form-control" v-model = user.location>
+        <class = "form-control" v-model = user.description>
+        <button type="submit" value ="submit" @click="registerNewUser">
+      </form>  
     </div>
    `,
 
     data() {
        return {
+      users: [
+      {
+        username: "",
+        password: "",
+        firstname: "",
+        lastname: "",
+        email: "",
+        location: "",
+        description: ""
 
-          Descriptions:[
-          ],
-          File:[]
-       }
+      }
+            ]
+     },
+    methods: {
+        registerNewUser(){
+          this.users.push({
+            username: "",
+            password: "",
+            firstname: "",
+            lastname: "",
+            email: "",
+            location: "",
+            description: ""
+          })
+        }
+     }
     }
 });
 
@@ -93,7 +111,7 @@ const router = new VueRouter({
         {path: "/", component: Home},
         // Put other routes here
 
-        {path: "/upload", component: Upload},
+        {path: "/api/users/register", component: Register},
 
         // This is a catch all route in case none of the above matches
         {path: "*", component: NotFound}

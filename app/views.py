@@ -33,6 +33,10 @@ def register():
         user = my_users(username,password,firstname,lastname,email,location,biography,Date)
         db.session.add(user)
         db.session.commit()
+        return app.send_static_file()
+
+    form_errors(my_register)
+    app.send_static_file('index.html', my_register=my_register)
 
 #@app.route("/api/upload", methods=["POST"])
 #def myUpload():
@@ -66,7 +70,7 @@ def index(path):
 
     Also we will render the initial webpage and then let VueJS take control.
     """
-    return render_template('index.html')
+    return app.send_static_file('index.html')
 
 
 
