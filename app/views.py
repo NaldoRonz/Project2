@@ -12,7 +12,7 @@ from flask_wtf import FlaskForm
 from .forms import RegisterForm
 from werkzeug.utils import secure_filename
 from app import db
-from app.models import my_users 
+from app.models import Users 
 from datetime import date
 
 ###
@@ -31,7 +31,7 @@ def register():
         location = my_register.Location.data
         biography = my_register.biography.data
         Date = joinDate()
-        user = my_users(username,password,firstname,lastname,email,location,biography,Date)
+        user = Users(username,password,firstname,lastname,email,location,biography,Date)
         db.session.add(user)
         db.session.commit()
         return app.send_static_file()
