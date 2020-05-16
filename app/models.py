@@ -1,4 +1,30 @@
 from . import db
+from werkzeug.security import generate_password_hash
+
+class Likes(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    user_id = db.Column(db.Integer)
+    post_id = db.Column(db.Integer)
+
+    def __init__(self,post_id,user_id):
+        self.user_id = user_id
+        self.post_id = post_id
+
+class Posts(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    user_id = db.Column(db.Integer)
+    photo = db.Column(db.String(255))
+    caption = db.Column(db.String(255))
+    created_on = db.Column(db.String(50))
+
+class Follows(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer)
+    follower_id = db.Column(db.Integer)
+
+    def __init__(self,user_id,follower_id):
+        self.user_id = user_id
+        self.follower_id = follower_id
 
 class my_users(db.Model):
       _tablename_ = "user_profiles"
