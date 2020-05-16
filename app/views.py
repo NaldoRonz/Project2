@@ -5,6 +5,7 @@ Werkzeug Documentation:  http://werkzeug.pocoo.org/documentation/
 This file creates your application.
 """
 
+import os
 from app import app
 from flask import render_template, request
 from flask_wtf import FlaskForm

@@ -13,10 +13,10 @@ class RegisterForm(FlaskForm):
 	Email = StringField(validators=[Required()])
 	Location = StringField(validators=[Required()])
 	Biography = TextField(validators=[Required()])
-	photo = FileField('ProfilePhoto', validators=[FileRequired(), FileAllowed('jpg','png','jpeg')])
+#	Photo = FileField(validators=[FileRequired(), FileAllowed('jpg','png','jpeg')])
 
 class LoginForm(FlaskForm):
-    Username = StringField('Username', validators=[InputRequired()])
+    Username = StringField('Username', validators=[Required()])
 
 
 
