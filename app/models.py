@@ -26,4 +26,10 @@ class my_users(db.Model):
     def __repr__(self):
         return f"my_users('{self.username}','{self.password}','{self.firstname}','{self.lastname}','{self.email}','{self.location}','{self.biography}','{self.joined_on}')"
 
+
+class my_posts(db,Model):
+	_tablename_ = "user_posts"
+
+	
+
     db.create_all() 
