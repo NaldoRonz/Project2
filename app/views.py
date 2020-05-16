@@ -8,26 +8,39 @@ This file creates your application.
 from app import app
 from flask import render_template, request
 from flask_wtf import FlaskForm
-from .forms import UploadForm
+from .forms import RegisterForm
 from werkzeug.utils import secure_filename
 
 ###
 # Routing for your application.
 ###
 
-@app.route("/api/upload", methods=["POST"])
-def myUpload():
-    my_upload = UploadForm()
-    if request.method == "POST" and my_upload.validate_on_submit():
-            photo = my_upload.Photo.data
-            description = my_upload.Description.data
+app.route("/api/users/register", methods =["POST"])
+def register():
+    my_register = RegisterForm()
+    if request.method =="POST" and my_register.validate_on_submit():
+        username = my_register.Username.data
+        password = my_register.Password.data
+        firstname = my_register.Firstname.data
+        lastname = my_register.Lastname.data
+        email =  my_register.Email.data
+        location = my_register.Location.data
+        biography = my_register.biography.data
+        user = User(username,password,firstname,lastname,email,location,biography)
 
-            filename = secure_filename(photo.filename)
-            photo.save(os.path.join(app.config["UPLOAD_FOLDER"],filename))
-            return render_template('index.html', filename=filename, description=description)
+#@app.route("/api/upload", methods=["POST"])
+#def myUpload():
+#    my_upload = UploadForm()
+#    if request.method == "POST" and my_upload.validate_on_submit():
+#            photo = my_upload.Photo.data
+#            description = my_upload.Description.data
+
+#            filename = secure_filename(photo.filename)
+#            photo.save(os.path.join(app.config["UPLOAD_FOLDER"],filename))
+#            return render_template('index.html', filename=filename, description=description)
     
-    form_errors(my_upload)
-    return render_template('index.html', my_upload=my_upload)
+#    form_errors(my_upload)
+#    return render_template('index.html', my_upload=my_upload)
 
 
 
