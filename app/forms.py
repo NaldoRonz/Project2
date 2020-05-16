@@ -1,18 +1,22 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileAllowed, FileRequired
 from wtforms import TextField, FileField, StringField, PasswordField
-from wtforms.validators import DataRequired
+from wtforms.validators import Required
 from werkzeug.utils import secure_filename
 
 
 class RegisterForm(FlaskForm):
-	Username = StringField(validators=[DataRequired])
-	Password = PasswordField(validators=[DataRequired])
-	Firstname = StringField(validators=[DataRequired])
-	Lastname = StringField(validators=[DataRequired])
-	Email = StringField(validators=[DataRequired])
-	Location = StringField(validators=[DataRequired])
-	Biography = TextField(validators=[DataRequired])
+	Username = StringField(validators=[Required()])
+	Password = PasswordField(validators=[Required()])
+	Firstname = StringField(validators=[Required()])
+	Lastname = StringField(validators=[Required()])
+	Email = StringField(validators=[Required()])
+	Location = StringField(validators=[Required()])
+	Biography = TextField(validators=[Required()])
+	photo = FileField('ProfilePhoto', validators=[FileRequired(), FileAllowed('jpg','png','jpeg')])
+
+class LoginForm(FlaskForm):
+    Username = StringField('Username', validators=[InputRequired()])
 
 
 
