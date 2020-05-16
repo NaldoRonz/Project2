@@ -1,4 +1,5 @@
 from . import db
+from sqlalchemy.orm import relationship
 from werkzeug.security import generate_password_hash
 
 
@@ -15,6 +16,9 @@ class Users(db.Model):
       biography = db.Column(db.String(300), nullable=False)
       profile_photo = db.Column(db.String(30), nullable=False)
       joined_on = db.Column(db.String(20), nullable=False)
+      child1 = relationship("Likes")
+      child2 = relationship("Posts")
+      child3 = relationship("Follows")
 
       def __init__(self,username,password,firstname,lastname,email,location,biography,profile_photo,joined_on):
       	self.username = username
