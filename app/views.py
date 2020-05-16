@@ -19,7 +19,7 @@ from datetime import date
 # Routing for your application.
 ###
 
-app.route("/api/users/register", methods =["POST"])
+@app.route('/api/users/register', methods =["POST"])
 def register():
     my_register = RegisterForm()
     if request.method =="POST" and my_register.validate_on_submit():
@@ -34,24 +34,11 @@ def register():
         user = Users(username,password,firstname,lastname,email,location,biography,Date)
         db.session.add(user)
         db.session.commit()
-        return app.send_static_file()
+        return render_template("index.html")
 
     form_errors(my_register)
-    app.send_static_file('index.html', my_register=my_register)
+    return render_template('index.html', my_register=my_register)
 
-#@app.route("/api/upload", methods=["POST"])
-#def myUpload():
-#    my_upload = UploadForm()
-#    if request.method == "POST" and my_upload.validate_on_submit():
-#            photo = my_upload.Photo.data
-#            description = my_upload.Description.data
-
-#            filename = secure_filename(photo.filename)
-#            photo.save(os.path.join(app.config["UPLOAD_FOLDER"],filename))
-#            return render_template('index.html', filename=filename, description=description)
-    
-#    form_errors(my_upload)
-#    return render_template('index.html', my_upload=my_upload)
 
 def joinDate():
     today = day.today().strftime('%B/%d/%Y')

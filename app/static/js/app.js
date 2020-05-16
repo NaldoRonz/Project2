@@ -2,7 +2,7 @@
 Vue.component('app-header', {
     template: `
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
-      <a class="navbar-brand" href="#">Project 2</a>
+      <a class="navbar-brand" href="#"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -10,15 +10,18 @@ Vue.component('app-header', {
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <router-link class="nav-link" to="/">Home <span class="sr-only">(current)</span></router-link>
+            <router-link class="nav-link" to='/'>Home</router-link>
           </li>
           <li class="nav-item active">
-            <router-link class="nav-link" to="/upload">Upload <span class="sr-only">(current)</span></router-link>
+            <router-link class="nav-link" to='/api/users/register'>Register</router-link>
           </li>
         </ul>
       </div>
     </nav>
-    `
+    `,
+    data: function() {
+      return {};
+    }
 });
 
 Vue.component('app-footer', {
@@ -33,16 +36,18 @@ Vue.component('app-footer', {
 
 const Home = Vue.component('home', {
    template: `
-    <div class="jumbotron">
+    <div class="home">
         <h1>Home</h1>
-        <p class="lead">Meh.....</p>
+        <p {{Meh}}</p>
     </div>
    `,
     data: function() {
-       return {}
+       return {
+        Meh: "n" 
+       }
     }
 });
-
+ 
 const Register = Vue.component('register-form', {
    template: `
     <div class="registration_form">
@@ -60,7 +65,7 @@ const Register = Vue.component('register-form', {
     </div>
    `,
 
-    data() {
+    data: function() {
        return {
       users: [
       {
@@ -108,13 +113,13 @@ const NotFound = Vue.component('not-found', {
 const router = new VueRouter({
     mode: 'history',
     routes: [
-        {path: "/", component: Home},
+        {path: '/', component: Home},
         // Put other routes here
 
-        {path: "/api/users/register", component: Register},
+        {path: '/api/users/register', component: Register},
 
         // This is a catch all route in case none of the above matches
-        {path: "*", component: NotFound}
+        {path: '*', component: NotFound}
     ]
 });
 
