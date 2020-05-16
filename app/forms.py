@@ -6,13 +6,14 @@ from werkzeug.utils import secure_filename
 
 
 class RegisterForm(FlaskForm):
-	Username = StringField(validatiors=[DataRequired])
-	Password = PasswordField(validatiors=[DataRequired])
-	Firstname = StringField(validatiors=[DataRequired])
-	Lastname = StringField(validatiors=[DataRequired])
-	Email = StringField(validatiors=[DataRequired])
-	Location = StringField(validatiors=[DataRequired])
-	Biography = TextField(validators=[DataRequired])
+	Username = StringField('Username',validatiors=[DataRequired])
+	Password = PasswordField('Password',validatiors=[DataRequired])
+	Firstname = StringField('Firstname',validatiors=[DataRequired])
+	Lastname = StringField('Lastname',validatiors=[DataRequired])
+	Email = StringField('email',validatiors=[DataRequired])
+	Location = StringField('location',validatiors=[DataRequired])
+	Biography = TextAreaField('Biography',validators=[DataRequired])
+  photo = FileField('ProfilePhoto', validators=[FileRequired(), FileAllowed('jpg','png','jpeg')])
 
 
 
