@@ -1,7 +1,5 @@
 from . import db
 from werkzeug.security import generate_password_hash
-<<<<<<< HEAD
-=======
 
 class Likes(db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -27,7 +25,6 @@ class Follows(db.Model):
     def __init__(self,user_id,follower_id):
         self.user_id = user_id
         self.follower_id = follower_id
->>>>>>> fbc4e3f4048c75ac9faef4c8448ae580d0b38994
 
 class my_users(db.Model):
       _tablename_ = "user_profiles"
