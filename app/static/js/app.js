@@ -60,7 +60,7 @@ const Register = Vue.component('register-form', {
         <class = "form-control" v-model = user.email>
         <class = "form-control" v-model = user.location>
         <class = "form-control" v-model = user.description>
-        <button type="submit" value ="submit" @click="registerNewUser">
+        <button type="submit" value ="submit" @click="registerNewUser">Register</button>
       </form>  
     </div>
    `,
@@ -79,7 +79,8 @@ const Register = Vue.component('register-form', {
 
       }
             ]
-     },
+     }
+   },
     methods: {
         registerNewUser(){
           this.users.push({
@@ -93,7 +94,6 @@ const Register = Vue.component('register-form', {
           })
         }
      }
-    }
 });
 
 
