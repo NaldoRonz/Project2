@@ -51,17 +51,86 @@ const Home = Vue.component('home', {
 const Register = Vue.component('register-form', {
    template: `
     <div class="registration_form">
-      <form id = "app" action = "" enctype = "multipart/form-data" method = "post">
-        v-for="(user, index) in users"
-        <class = "form-control" v-model = user.username>
-        <class = "form-control" v-model = user.password>
-        <class = "form-control" v-model = user.firstname>
-        <class = "form-control" v-model = user.lastname>
-        <class = "form-control" v-model = user.email>
-        <class = "form-control" v-model = user.location>
-        <class = "form-control" v-model = user.description>
-        <button type="submit" value ="submit" @click="registerNewUser">Register</button>
-      </form>  
+      <b-form @submit = "registerNewUser" @reset = "resetForm">
+        <b-form-group
+         id = "input-group-1"
+         label = "Username"
+         label-for = "input-1"
+        >
+            <b-form-input
+              id = "input-1"
+              v-model = "my_register.username"
+              ></b-form-input>
+      </b-form-group>
+
+      <b-form-group
+         id = "input-group-2"
+         label = "Firstname"
+         label-for = "input-2"
+        >
+            <b-form-input
+               id = "input-2"
+               v-model = "my_register.firstname"
+               ></b-form-input>
+      </b-form-group>
+
+      <b-form-group
+         id = "input-group-3"
+         label = "Lastname"
+         label-for = "input-3"
+        >
+            <b-form-input
+               id = "input-3"
+               v-model = "my_register.lastname"
+               ></b-form-input>
+      </b-form-group>
+
+      <b-form-group
+         id = "input-group-4"
+         label = "Email"
+         label-for = "input-4"
+        >
+            <b-form-input
+               id = "input-4"
+               v-model = "my_register.email"
+               ></b-form-input>
+      </b-form-group>
+
+      <b-form-group
+         id = "input-group-5"
+         label = "Location"
+         label-for = "input-5"
+        >
+            <b-form-input
+               id = "input-5"
+               v-model = "my_register.location"
+               ></b-form-input>
+      </b-form-group>
+
+      <b-form-group
+         id = "input-group-6"
+         label = "description"
+         label-for = "input-6"
+        >
+            <b-form-input
+               id = "input-6"
+               v-model = "my_register.description"
+               ></b-form-input>
+      </b-form-group>
+
+      <b-form-group
+         id = "input-group-7"
+         label = "Password"
+         label-for = "input-7"
+        >
+            <b-form-input
+               id = "input-7"
+               v-model = "my_register.password"
+               ></b-form-input>
+      </b-form-group>
+
+      <button type="submit" value ="submit" @click="registerNewUser">Register</button>  
+     </b-form>
     </div>
    `,
 
@@ -82,8 +151,13 @@ const Register = Vue.component('register-form', {
      }
    },
     methods: {
-        registerNewUser(){
-          this.users.push({
+        registerNewUser(evt){
+            evt.preventDefault()
+            alert(JSON.stringify(this.form))
+      },
+        resetForm(evt){
+            evt.preventDefault()
+            this.users.push({
             username: "",
             password: "",
             firstname: "",
