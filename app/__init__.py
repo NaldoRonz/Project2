@@ -1,7 +1,13 @@
 from flask import Flask
+from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
+from flask_bcrypt import Bcrypt
+from flask_wtf.csrf import CSRFProtect
+import os
+
 
 app = Flask(__name__)
+csrf = CSRFProtect(app)
 app.config['SECRET_KEY'] = 'v\xf9\xf7\x11\x13\x18\xfasa60q0s_ytvctyvrd4xgMY(p\xed_)\xe8\xc9w(\x06\x8e\xf0f(g6g9t\xd2\xba6ges3ojinubvr#s2s-rytturyv5r\xfd\x8c\xda'
 app.config['UPLOAD_FOLDER'] = "app/static/uploads"
 
